@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>XmlSerializerHelper</id>
+    <version>1.0.0</version>
+    <title>XmlSerializerHelper</title>
+    <authors>Thomas Galliker</authors>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://nuget.org/packages/XmlSerializerHelper</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/thomasgalliker/XmlSerializerHelper/master/Images/xmlserializerhelper.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>XmlSerializerHelper is a utility for reading embedded resources from assemblies.</summary>
+    <description>XmlSerializerHelper is a utility for reading embedded resources from assemblies.</description>
+    <tags>
+      XmlSerializerHelper xml serlializer helper serializing serialize deserialize
+      windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
+    </tags>
+    <releaseNotes>
+      1.0.0
+      - Initial release
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <!--PCL-->
+    <file src="..\XmlSerializerHelper\bin\Release\XmlSerializerHelper.dll" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\XmlSerializerHelper.dll" />
+    <file src="..\XmlSerializerHelper\bin\Release\XmlSerializerHelper.pdb" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\XmlSerializerHelper.pdb" />
+    <file src="..\XmlSerializerHelper\bin\Release\XmlSerializerHelper.xml" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\XmlSerializerHelper.xml" />
+
+    <file src="tools\init.ps1" target="tools\init.ps1" />
+    <file src="tools\install.ps1" target="tools\install.ps1" />
+    <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+  </files>
+</package>
