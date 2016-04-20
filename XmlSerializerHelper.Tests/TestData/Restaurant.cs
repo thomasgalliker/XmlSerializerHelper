@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XmlSerializerHelper.Tests.TestData
+﻿namespace System.Xml.Serialization.Tests.TestData
 {
     public class Restaurant
     {

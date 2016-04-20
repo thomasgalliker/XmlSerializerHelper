@@ -1,25 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Xml.Serialization;
+using System.Xml.Serialization.Utils;
 
-using XmlSerializerHelper.Utils;
-
-namespace XmlSerializerHelper
+namespace System.Xml.Serialization
 {
-    public static class XmlSerializerHelper
+    public class XmlSerializerHelper : IXmlSerializerHelper
     {
-        /// <summary>
-        /// Serializes objects into XML strings.
-        /// </summary>
-        /// <param name="value">The object to be serialized.</param>
-        /// <param name="preserveTypeInformation">
-        /// Instructs the serializer to preserve the original type of the given value.
-        /// This flag must be set to <value>true</value> when you intend to deserialize to an interface type.
-        /// Default value is <value>false</value>..</param>
-        /// <returns>The serialized XML string.</returns>
-        public static string SerializeToXml(this object value, bool preserveTypeInformation = false)
+       //TODO Inherit documentation
+        public string SerializeToXml(object value, bool preserveTypeInformation = false)
         {
             //Guard.ArgumentNotNull(() => value);
 
@@ -51,17 +40,10 @@ namespace XmlSerializerHelper
             }
         }
 
-        /// <summary>
-        /// Deserializes XML strings into objects of given type T.
-        /// </summary>
-        /// <typeparam name="T">Target type T.</typeparam>
-        /// <param name="xmlString">The serialized XML string.</param>
-        /// <returns>An object of type T.</returns>
-        public static T DeserializeFromXml<T>(this string xmlString)
+        //TODO Inherit documentation
+        public object DeserializeFromXml(Type targetType, string xmlString)
         {
             //Guard.ArgumentNotNullOrEmpty(() => xmlString);
-
-            Type targetType = typeof(T);
 
             if (!ValueToTypeMapping.CheckIfStringContainsTypeInformation(xmlString))
             {
@@ -71,7 +53,7 @@ namespace XmlSerializerHelper
                 var serializer = new XmlSerializer(targetType);
                 using (var memoryStream = new MemoryStream(ByteConverter.StringToUtf8ByteArray(xmlString)))
                 {
-                    var deserialized = (T)serializer.Deserialize(memoryStream);
+                    var deserialized = serializer.Deserialize(memoryStream);
                     return deserialized;
                 }
             }
@@ -101,10 +83,16 @@ namespace XmlSerializerHelper
                     deserializedObject = (ValueToTypeMapping)serializerAfter.Deserialize(memoryStream);
                 }
 
-                return (T)Convert.ChangeType(deserializedObject.Value, serializedType);
+                return Convert.ChangeType(deserializedObject.Value, serializedType);
             }
 
-            return (T)deserializedObject.Value;
+            return deserializedObject.Value;
+        }
+
+        public T DeserializeFromXml<T>(string xmlString)
+        {
+            Type targetType = typeof(T);
+            return (T)this.DeserializeFromXml(targetType, xmlString);
         }
 
         public class ValueToTypeMapping

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace XmlSerializerHelper.Utils
+namespace System.Xml.Serialization.Utils
 {
     public static class ByteConverter
     {
