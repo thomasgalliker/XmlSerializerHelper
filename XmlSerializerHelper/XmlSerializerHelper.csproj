@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="IXmlSerializerHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlSerializerHelperStatic.cs" />
     <Compile Include="Utils\ByteConverter.cs" />
     <Compile Include="XmlSerializerHelper.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />

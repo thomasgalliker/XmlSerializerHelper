@@ -7,7 +7,22 @@ namespace System.Xml.Serialization
 {
     public class XmlSerializerHelper : IXmlSerializerHelper
     {
-       //TODO Inherit documentation
+        static readonly Lazy<IXmlSerializerHelper> Implementation = new Lazy<IXmlSerializerHelper>(CreateXmlSerializerHelper, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+
+        public static IXmlSerializerHelper Current
+        {
+            get
+            {
+                return Implementation.Value;
+            }
+        }
+
+        static IXmlSerializerHelper CreateXmlSerializerHelper()
+        {
+            return new XmlSerializerHelper();
+        }
+
+        //TODO Inherit documentation
         public string SerializeToXml(object value, bool preserveTypeInformation = false)
         {
             //Guard.ArgumentNotNull(() => value);
