@@ -18,9 +18,9 @@
     <releaseNotes>
       2.0.0
       - Refactored to provide non-static implementation of XmlSerializerHelper
-      - New IXmlSerializerHelper interface
+      - New IXmlSerializerHelper interface as abstraction for XmlSerializerHelper
       - Static access to IXmlSerializerHelper via XmlSerializerHelper.Current
-      
+
       1.0.1
       - Initial release
     </releaseNotes>
