@@ -7,7 +7,7 @@
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <projectUrl>https://nuget.org/packages/XmlSerializerHelper</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/thomasgalliker/XmlSerializerHelper/master/Images/xmlserializerhelper.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/thomasgalliker/XmlSerializerHelper/master/XmlSerializerHelper.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>XmlSerializerHelper serializes and deserializes ANY object from/to XML.</summary>
     <description>XmlSerializerHelper serializes and deserializes ANY object from/to XML.</description>
