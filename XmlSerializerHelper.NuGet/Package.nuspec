@@ -9,8 +9,8 @@
     <projectUrl>https://github.com/thomasgalliker/XmlSerializerHelper</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/thomasgalliker/XmlSerializerHelper/master/XmlSerializerHelper.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>XmlSerializerHelper serializes and deserializes ANY object from/to XML.</summary>
-    <description>XmlSerializerHelper serializes and deserializes ANY object from/to XML.</description>
+    <summary>XmlSerializerHelper serializes and deserializes any .Net object from/to XML.</summary>
+    <description>XmlSerializerHelper serializes and deserializes any .Net object from/to XML. It internally uses XmlSerializer which is part of the System.Reflection namespace. On top of XmlSerializer it adds a feature to preserve original type information.</description>
     <tags>
       XmlSerializerHelper xml serlializer helper serializing serialize deserialize
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
