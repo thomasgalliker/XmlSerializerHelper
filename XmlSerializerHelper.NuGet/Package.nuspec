@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>XmlSerializerHelper</id>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <title>XmlSerializerHelper</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,7 +16,7 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
-      2.0.0
+      2.0.1
       - Refactored to provide non-static implementation of XmlSerializerHelper
       - New IXmlSerializerHelper interface as abstraction for XmlSerializerHelper
       - Static access to IXmlSerializerHelper via XmlSerializerHelper.Current
