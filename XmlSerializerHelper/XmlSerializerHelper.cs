@@ -22,12 +22,21 @@ namespace System.Xml.Serialization
             return new XmlSerializerHelper();
         }
 
-        //TODO Inherit documentation
-        public string SerializeToXml(object value, bool preserveTypeInformation = false)
+        public XmlSerializerHelper()
+        {
+            this.Encoding = Encoding.UTF8;
+        }
+
+        public Encoding Encoding { get; set; }
+
+        /// <inheritdoc />
+        public string SerializeToXml(object value, bool preserveTypeInformation = false, Encoding encoding = null)
         {
             //Guard.ArgumentNotNull(() => value);
 
             var sourceType = value.GetType();
+
+            encoding = encoding ?? this.Encoding;
 
             object objectToSerialize;
             if (preserveTypeInformation)
@@ -47,18 +56,20 @@ namespace System.Xml.Serialization
 
             using (var memoryStream = new MemoryStream())
             {
-                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8))
+                using (var streamWriter = new StreamWriter(memoryStream, encoding))
                 {
                     serializer.Serialize(streamWriter, objectToSerialize);
-                    return ByteConverter.Utf8ByteArrayToString(((MemoryStream)streamWriter.BaseStream).ToArray());
+                    return ByteConverter.GetStringFromByteArray(encoding, ((MemoryStream)streamWriter.BaseStream).ToArray());
                 } 
             }
         }
 
-        //TODO Inherit documentation
-        public object DeserializeFromXml(Type targetType, string xmlString)
+        /// <inheritdoc />
+        public object DeserializeFromXml(Type targetType, string xmlString, Encoding encoding = null)
         {
             //Guard.ArgumentNotNullOrEmpty(() => xmlString);
+
+            encoding = encoding ?? this.Encoding;
 
             if (!ValueToTypeMapping.CheckIfStringContainsTypeInformation(xmlString))
             {
@@ -66,7 +77,7 @@ namespace System.Xml.Serialization
                 //Guard.ArgumentMustNotBeInterface(targetType);
 
                 var serializer = new XmlSerializer(targetType);
-                using (var memoryStream = new MemoryStream(ByteConverter.StringToUtf8ByteArray(xmlString)))
+                using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
                 {
                     var deserialized = serializer.Deserialize(memoryStream);
                     return deserialized;
@@ -83,7 +94,7 @@ namespace System.Xml.Serialization
             var serializerBefore = new XmlSerializer(typeof(ValueToTypeMapping), extraTypes);
             ValueToTypeMapping deserializedObject = null;
 
-            using (var memoryStream = new MemoryStream(ByteConverter.StringToUtf8ByteArray(xmlString)))
+            using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
             {
                 deserializedObject = (ValueToTypeMapping)serializerBefore.Deserialize(memoryStream);
             }
@@ -93,7 +104,7 @@ namespace System.Xml.Serialization
             {
                 Type serializedType = Type.GetType(deserializedObject.TypeName);
                 var serializerAfter = new XmlSerializer(typeof(ValueToTypeMapping), new[] { serializedType });
-                using (var memoryStream = new MemoryStream(ByteConverter.StringToUtf8ByteArray(xmlString)))
+                using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
                 {
                     deserializedObject = (ValueToTypeMapping)serializerAfter.Deserialize(memoryStream);
                 }
@@ -104,10 +115,11 @@ namespace System.Xml.Serialization
             return deserializedObject.Value;
         }
 
-        public T DeserializeFromXml<T>(string xmlString)
+        /// <inheritdoc />
+        public T DeserializeFromXml<T>(string xmlString, Encoding encoding = null)
         {
             Type targetType = typeof(T);
-            return (T)this.DeserializeFromXml(targetType, xmlString);
+            return (T)this.DeserializeFromXml(targetType, xmlString, encoding);
         }
 
         public class ValueToTypeMapping

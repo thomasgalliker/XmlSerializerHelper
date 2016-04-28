@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Xml.Serialization.Extensions;
+using System.Text;
 using System.Xml.Serialization.Tests.TestData;
 
 using FluentAssertions;
@@ -122,6 +122,39 @@ namespace System.Xml.Serialization.Tests
             // Assert
             listOfRestaurants.Should().HaveCount(4891);
             stopwatch.Elapsed.TotalMilliseconds.Should().BeLessOrEqualTo(1500);
+        }
+
+        [Fact]
+        public void ShouldDeserializeXmlWithEncoding()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+            string serializedString = @"<?xml version=""1.0"" encoding=""iso-8859-1"" ?><SimpleSerializerClass><StringProperty>6.00% p.a. Multi Barrier Reverse Convertible on EURO STOXX 50® Index, S&amp;P 500®, Swiss Market Index®</StringProperty></SimpleSerializerClass>";
+            var encoding = Encoding.GetEncoding("ISO-8859-1");
+
+            // Act
+            var deserializedObject = xmlSerializerHelper.DeserializeFromXml<SimpleSerializerClass>(serializedString, encoding);
+
+            // Assert
+            deserializedObject.Should().NotBeNull();
+            deserializedObject.StringProperty.Should().NotContain("Â");
+            xmlSerializerHelper.Encoding.Should().Be(Encoding.UTF8);
+        }
+
+        [Fact]
+        public void ShouldDeserializeXmlWithEncodingMismatch()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+            xmlSerializerHelper.Encoding = Encoding.UTF8;
+            string serializedString = @"<?xml version=""1.0"" encoding=""iso-8859-1"" ?><SimpleSerializerClass><StringProperty>6.00% p.a. Multi Barrier Reverse Convertible on EURO STOXX 50® Index, S&amp;P 500®, Swiss Market Index®</StringProperty></SimpleSerializerClass>";
+
+            // Act
+            var deserializedObject = xmlSerializerHelper.DeserializeFromXml<SimpleSerializerClass>(serializedString);
+
+            // Assert
+            deserializedObject.Should().NotBeNull();
+            deserializedObject.StringProperty.Should().Contain("Â");
         }
     }
 }
