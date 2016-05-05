@@ -5,7 +5,7 @@ using System.Xml.Serialization.Utils;
 
 namespace System.Xml.Serialization
 {
-    public class XmlSerializerHelper : IXmlSerializerHelper
+    public partial class XmlSerializerHelper : IXmlSerializerHelper
     {
         static readonly Lazy<IXmlSerializerHelper> Implementation = new Lazy<IXmlSerializerHelper>(CreateXmlSerializerHelper, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 

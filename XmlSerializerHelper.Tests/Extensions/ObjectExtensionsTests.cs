@@ -1,11 +1,11 @@
-﻿using System.Xml.Serialization.Extensions;
-using System.Xml.Serialization.Tests.TestData;
+﻿
+using System.Xml.Serialization.Extensions;
 
 using FluentAssertions;
 
 using Xunit;
 
-namespace System.Xml.Serialization.Tests
+namespace System.Xml.Serialization.Tests.Extensions
 {
     public class ObjectExtensionsTests
     {

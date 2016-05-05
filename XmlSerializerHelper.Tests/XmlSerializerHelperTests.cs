@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Xml.Serialization.Tests.TestData;
 
@@ -111,7 +112,7 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            var restaurantsXml = ResourceLoader.ResourceLoader.GetEmbeddedResourceString(this.GetType().Assembly, ".SerializedData.xml");
+            var restaurantsXml = ResourceLoader.Current.GetEmbeddedResourceString(this.GetType().Assembly, ".SerializedData.xml");
             var stopwatch = new Stopwatch();
 
             // Act
