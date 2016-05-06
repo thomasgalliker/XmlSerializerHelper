@@ -1,5 +1,4 @@
-﻿
-using System.Xml.Serialization.Extensions;
+﻿using System.Xml.Serialization.Extensions;
 
 using FluentAssertions;
 

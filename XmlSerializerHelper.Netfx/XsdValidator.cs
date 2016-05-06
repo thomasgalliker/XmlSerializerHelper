@@ -7,11 +7,27 @@ namespace System.Xml.Serialization
 {
     public class XsdValidator : IXsdValidator
     {
+        static readonly Lazy<IXsdValidator> Implementation = new Lazy<IXsdValidator>(CreateXsdValidator, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+
+        public static IXsdValidator Current
+        {
+            get
+            {
+                return Implementation.Value;
+            }
+        }
+
+        static IXsdValidator CreateXsdValidator()
+        {
+            return new XsdValidator();
+        }
+
         private static XsdValidationException ToXsdValidationException(XmlSchemaException exception)
         {
             return new XsdValidationException(exception.Message, exception.SourceUri, exception.LineNumber, exception.LinePosition);
         }
 
+        /// <inheritdoc />
         public ValidationResult Validate(string xmlContent, string xsdContent)
         {
             // TODO GATH: Use Guards here.

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>XmlSerializerHelper</id>
-    <version>3.0.0-pre8</version>
+    <version>3.0.0-pre12</version>
     <title>XmlSerializerHelper</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>

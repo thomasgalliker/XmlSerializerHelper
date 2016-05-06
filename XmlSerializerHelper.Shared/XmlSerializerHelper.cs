@@ -5,7 +5,7 @@ using System.Xml.Serialization.Utils;
 
 namespace System.Xml.Serialization
 {
-    public partial class XmlSerializerHelper : IXmlSerializerHelper
+    public class XmlSerializerHelper : IXmlSerializerHelper
     {
         static readonly Lazy<IXmlSerializerHelper> Implementation = new Lazy<IXmlSerializerHelper>(CreateXmlSerializerHelper, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
@@ -27,6 +27,7 @@ namespace System.Xml.Serialization
             this.Encoding = Encoding.UTF8;
         }
 
+        /// <inheritdoc />
         public Encoding Encoding { get; set; }
 
         /// <inheritdoc />

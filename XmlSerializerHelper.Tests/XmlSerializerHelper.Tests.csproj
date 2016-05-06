@@ -91,9 +91,9 @@
     <EmbeddedResource Include="TestData\SerializedData.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XmlSerializerHelper\XmlSerializerHelper.csproj">
-      <Project>{00c0cf40-4dd0-480a-b87f-7f05f38aeff8}</Project>
-      <Name>XmlSerializerHelper</Name>
+    <ProjectReference Include="..\XmlSerializerHelper.Netfx\XmlSerializerHelper.Netfx.csproj">
+      <Project>{c8b2f494-2339-4a74-bf7e-e126ea163f12}</Project>
+      <Name>XmlSerializerHelper.Netfx</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

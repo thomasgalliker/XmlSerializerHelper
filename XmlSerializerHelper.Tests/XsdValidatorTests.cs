@@ -43,5 +43,15 @@ namespace System.Xml.Serialization.Tests
             validationResult.Errors.Should().HaveCount(1);
             validationResult.Errors.ElementAt(0).Message.Should().Be("The element 'Root' has invalid child element 'Child3'. List of possible elements expected: 'Child2'.");
         }
+
+        [Fact]
+        public void ShouldAccessStaticInstance()
+        {
+            // Act
+            IXsdValidator xsdValidator = XsdValidator.Current;
+
+            // Assert
+            xsdValidator.Should().NotBeNull();
+        }
     }
 }
