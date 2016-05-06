@@ -41,8 +41,24 @@ deserializedObject.BoolProperty.Should().BeTrue();
 deserializedObject.StringProperty.Should().Be("test");
 ```
 
+#### Validate the XSD schema for an XML file
+XsdValidator can be used to validate XML content against a given XSD schema.
+```
+// Arrange
+string xmlContent = XmlTestData.GetValidXmlContent();
+string xsdContent = XmlTestData.GetXsdMarkup();
+
+IXsdValidator xsdValidator = new XsdValidator();
+
+// Act
+var validationResult = xsdValidator.Validate(xmlContent, xsdContent);
+
+// Assert
+validationResult.IsValid.Should().BeTrue();
+```
+
 #### Using object extension methods
-There is a number of extension of type object in ObjectExtensions. You can simply call SerializeToXml resp. DeserializeFromXml on any .Net object. Following unit tests gives an example:
+There is a number of extension methods for type System.Object in ObjectExtensions. You can simply call SerializeToXml resp. DeserializeFromXml on any .Net object. Following unit tests gives an example:
 ```
 // Arrange
 float inputValue = 123.456f;
@@ -55,11 +71,12 @@ var serializedString = inputValue.SerializeToXml();
 serializedString.Should().Be(expectedOuput);
 ```
 
-#### Using singleton implementation XmlSerializerHelper.Current
-If you do not use an IoC framework, you can call XmlSerializerHelper.Current directly to get a singleton instance of IXmlSerializerHelper.
+#### Dependency management
+If you do not use an IoC framework, you can call ```XmlSerializerHelper.Current``` to get a singleton instance of IXmlSerializerHelper.
 ```
 string serializedString = XmlSerializerHelper.Current.SerializeToXml(value: new object(), preserveTypeInformation: false);
 ```
+The same applies to XsdValidator.Current. However, it is advised to register the mentioned interfaces along with their respective implementations in an IoC framework, such as Unity, Autofac, Ninject, etc...
 
 ### License
 This project is Copyright &copy; 2016 [Thomas Galliker](https://ch.linkedin.com/in/thomasgalliker). Free for non-commercial use. For commercial use please contact the author.
