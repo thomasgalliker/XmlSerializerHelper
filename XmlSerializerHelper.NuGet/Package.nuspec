@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>XmlSerializerHelper</id>
-    <version>3.0.0-pre12</version>
+    <version>3.0.0</version>
     <title>XmlSerializerHelper</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,9 +16,8 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
-      3.0.0-pre
-      - Added XsdValidator to support XSD schema validation
-      - Multi-platform support for XsdValidator
+      3.0.0
+      - Added XsdValidator to support XSD schema validation. (Currently only supported on .Net 4.5, Xamarin.iOS, Xamarin.Android)
       
       2.0.3
       - Added text encoding parameter
