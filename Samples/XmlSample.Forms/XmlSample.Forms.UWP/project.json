@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
-    "Xamarin.Forms": "2.0.0.6482",
-    "XmlSerializerHelper": "3.0.0-pre9"
+    "Xamarin.Forms": "2.2.0.45",
+    "XmlSerializerHelper": "3.0.0"
   },
   "frameworks": {
     "uap10.0": {}

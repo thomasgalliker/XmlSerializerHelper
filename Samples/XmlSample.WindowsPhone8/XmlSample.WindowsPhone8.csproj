@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="XmlSerializerHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XmlSerializerHelper.3.0.0-pre9\lib\wp8\XmlSerializerHelper.dll</HintPath>
+      <HintPath>..\..\packages\XmlSerializerHelper.3.0.0\lib\wp8\XmlSerializerHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
