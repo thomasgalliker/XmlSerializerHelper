@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace XmlSample
 {
@@ -9,15 +8,18 @@ namespace XmlSample
         {
             string inputString = "This is a test string";
 
-            try
-            {
-                XsdValidator x = new XsdValidator();
-                var result = x.Validate("", "");
-            }
-            catch (Exception ex)
-            {
+            ////try
+            ////{
+            ////    string xmlContent = XmlTestData.GetValidXmlContent();
+            ////    string xsdContent = XmlTestData.GetXsdMarkup();
+
+            ////    IXsdValidator xsdValidator = new XsdValidator();
+            ////    var validationResult = xsdValidator.Validate(xmlContent, xsdContent);
+            ////}
+            ////catch (Exception ex)
+            ////{
                 
-            }
+            ////}
            
             var serialized = XmlSerializerHelper.Current.SerializeToXml(inputString);
             var deserialized = XmlSerializerHelper.Current.DeserializeFromXml<string>(serialized);
