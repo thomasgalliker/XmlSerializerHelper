@@ -1,4 +1,4 @@
-﻿namespace System.Xml.Serialization.Tests.TestData
+﻿namespace XmlSample.TestData
 {
     public class SimpleSerializerClass
     {

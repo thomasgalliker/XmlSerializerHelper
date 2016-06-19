@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using System.Reflection;
-using System.Xml.Serialization.Tests.TestData;
 
 using FluentAssertions;
+
+using XmlSample.TestData;
 
 using Xunit;
 

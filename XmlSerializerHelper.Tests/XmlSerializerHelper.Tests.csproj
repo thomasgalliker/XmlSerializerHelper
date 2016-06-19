@@ -79,19 +79,17 @@
   <ItemGroup>
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestData\Restaurant.cs" />
-    <Compile Include="TestData\SimpleSerializerClass.cs" />
     <Compile Include="XmlSerializerHelperTests.cs" />
-    <Compile Include="TestData\XmlTestData.cs" />
     <Compile Include="XsdValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestData\SerializedData.xml" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Samples\XmlSample\XmlSample.csproj">
+      <Project>{d4d77a4b-51c4-44a5-b056-1233ad1a99ed}</Project>
+      <Name>XmlSample</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XmlSerializerHelper.Netfx\XmlSerializerHelper.Netfx.csproj">
       <Project>{c8b2f494-2339-4a74-bf7e-e126ea163f12}</Project>
       <Name>XmlSerializerHelper.Netfx</Name>

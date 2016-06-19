@@ -2,9 +2,10 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using System.Xml.Serialization.Tests.TestData;
 
 using FluentAssertions;
+
+using XmlSample.TestData;
 
 using Xunit;
 

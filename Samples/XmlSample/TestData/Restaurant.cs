@@ -1,4 +1,6 @@
-﻿namespace System.Xml.Serialization.Tests.TestData
+﻿using System;
+
+namespace XmlSample.TestData
 {
     public class Restaurant
     {

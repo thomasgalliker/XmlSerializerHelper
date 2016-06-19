@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace System.Xml.Serialization.Tests.TestData
+namespace XmlSample.TestData
 {
     internal static class XmlTestData
     {
