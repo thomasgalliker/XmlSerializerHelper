@@ -33,7 +33,10 @@ namespace System.Xml.Serialization
         /// <inheritdoc />
         public string SerializeToXml(object value, bool preserveTypeInformation = false, Encoding encoding = null)
         {
-            //Guard.ArgumentNotNull(() => value);
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
             var sourceType = value.GetType();
 
@@ -68,7 +71,15 @@ namespace System.Xml.Serialization
         /// <inheritdoc />
         public object DeserializeFromXml(Type targetType, string xmlString, Encoding encoding = null)
         {
-            //Guard.ArgumentNotNullOrEmpty(() => xmlString);
+            if (targetType == null)
+            {
+                throw new ArgumentNullException(nameof(targetType));
+            }
+
+            if (string.IsNullOrEmpty(xmlString))
+            {
+                throw new ArgumentException("Must not be null or empty", nameof(xmlString));
+            }
 
             encoding = encoding ?? this.Encoding;
 

@@ -13,6 +13,48 @@ namespace System.Xml.Serialization.Tests
     public class XmlSerializerHelperTests
     {
         [Fact]
+        public void ShouldThrowArgumentNullExceptionIfObjectIsNull()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+
+            // Act
+
+            Action action = () => xmlSerializerHelper.SerializeToXml(null);
+
+            // Assert
+            action.ShouldThrow<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void ShouldThrowArgumentNullExceptionIfSourceTypeIsNull()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+
+            // Act
+
+            Action action = () => xmlSerializerHelper.DeserializeFromXml(null, string.Empty);
+
+            // Assert
+            action.ShouldThrow<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void ShouldThrowArgumentExceptionIfXmlStringIsNullOrEmpty()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+
+            // Act
+
+            Action action = () => xmlSerializerHelper.DeserializeFromXml(typeof(string), string.Empty);
+
+            // Assert
+            action.ShouldThrow<ArgumentException>();
+        }
+
+        [Fact]
         public void ShouldSerializeEmptyObject()
         {
             // Arrange
