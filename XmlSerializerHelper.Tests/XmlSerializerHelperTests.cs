@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization.Tests.TestData;
@@ -35,17 +34,16 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            object obj = new SimpleSerializerClass { BoolProperty = true, StringProperty = "test" };
+            object inputObject = new SimpleSerializerClass { BoolProperty = true, StringProperty = "test" };
 
             // Act
-            var serializedString = xmlSerializerHelper.SerializeToXml(obj);
+            var serializedString = xmlSerializerHelper.SerializeToXml(inputObject);
             var deserializedObject = xmlSerializerHelper.DeserializeFromXml<SimpleSerializerClass>(serializedString);
 
             // Assert
             serializedString.Should().NotBeNullOrEmpty();
             deserializedObject.Should().NotBeNull();
-            deserializedObject.BoolProperty.Should().BeTrue();
-            deserializedObject.StringProperty.Should().Be("test");
+            inputObject.ShouldBeEquivalentTo(deserializedObject);
         }
 
         [Fact]
@@ -53,18 +51,17 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            object obj = new SimpleSerializerClass { BoolProperty = true, StringProperty = "test" };
-            Type targetType = obj.GetType();
+            object inputObject = new SimpleSerializerClass { BoolProperty = true, StringProperty = "test" };
+            Type targetType = inputObject.GetType();
 
             // Act
-            var serializedString = xmlSerializerHelper.SerializeToXml(obj);
+            var serializedString = xmlSerializerHelper.SerializeToXml(inputObject);
             var deserializedObject = (SimpleSerializerClass)xmlSerializerHelper.DeserializeFromXml(targetType, serializedString);
 
             // Assert
             serializedString.Should().NotBeNullOrEmpty();
             deserializedObject.Should().NotBeNull();
-            deserializedObject.BoolProperty.Should().BeTrue();
-            deserializedObject.StringProperty.Should().Be("test");
+            inputObject.ShouldBeEquivalentTo(deserializedObject);
         }
 
         [Fact]
@@ -72,19 +69,17 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            List<string> list = new List<string> { "a", "b", "c" };
+            List<string> inputList = new List<string> { "a", "b", "c" };
 
             // Act
-            var serializedString = xmlSerializerHelper.SerializeToXml(list);
+            var serializedString = xmlSerializerHelper.SerializeToXml(inputList);
             var deserializedList = xmlSerializerHelper.DeserializeFromXml<List<string>>(serializedString);
 
             // Assert
             serializedString.Should().NotBeNullOrEmpty();
             deserializedList.Should().NotBeNullOrEmpty();
-            deserializedList.Should().HaveCount(list.Count);
-            deserializedList.ElementAt(0).Should().Be(list[0]);
-            deserializedList.ElementAt(1).Should().Be(list[1]);
-            deserializedList.ElementAt(2).Should().Be(list[2]);
+            deserializedList.Should().HaveCount(inputList.Count);
+            inputList.Should().ContainInOrder(deserializedList);
         }
 
         [Fact]
@@ -92,19 +87,17 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            IList<string> list = new List<string> { "a", "b", "c" };
+            IList<string> inputList = new List<string> { "a", "b", "c" };
 
             // Act
-            var serializedString = xmlSerializerHelper.SerializeToXml(list, preserveTypeInformation: true);
+            var serializedString = xmlSerializerHelper.SerializeToXml(inputList, preserveTypeInformation: true);
             var deserializedList = xmlSerializerHelper.DeserializeFromXml<IList<string>>(serializedString);
 
             // Assert
             serializedString.Should().NotBeNullOrEmpty();
             deserializedList.Should().NotBeNullOrEmpty();
-            deserializedList.Should().HaveCount(list.Count);
-            deserializedList.ElementAt(0).Should().Be(list[0]);
-            deserializedList.ElementAt(1).Should().Be(list[1]);
-            deserializedList.ElementAt(2).Should().Be(list[2]);
+            deserializedList.Should().HaveCount(inputList.Count);
+            inputList.Should().ContainInOrder(deserializedList);
         }
 
         [Fact]
@@ -138,7 +131,7 @@ namespace System.Xml.Serialization.Tests
 
             // Assert
             deserializedObject.Should().NotBeNull();
-            deserializedObject.StringProperty.Should().NotContain("Â");
+            deserializedObject.StringProperty.Should().NotContain("Â", "This character is only contained if the wrong encoding is used.");
             xmlSerializerHelper.Encoding.Should().Be(Encoding.UTF8);
         }
 
