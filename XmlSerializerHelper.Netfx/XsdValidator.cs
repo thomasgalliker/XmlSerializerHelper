@@ -30,7 +30,6 @@ namespace System.Xml.Serialization
         /// <inheritdoc />
         public ValidationResult Validate(string xmlContent, string xsdContent)
         {
-            // TODO GATH: Use Guards here.
             if (string.IsNullOrEmpty(xmlContent))
             {
                 throw new ArgumentNullException(nameof(xmlContent));
