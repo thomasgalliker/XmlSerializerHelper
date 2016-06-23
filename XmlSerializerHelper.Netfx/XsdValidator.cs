@@ -60,8 +60,6 @@ namespace System.Xml.Serialization
             return new ValidationResult(validationExceptions);
         }
 
-
-
         private static XmlReaderSettings GetXmlReaderSettings(string xsdContent, Action<object, ValidationEventArgs> validationFunction)
         {         
             var schema = XmlSchema.Read(
