@@ -1,0 +1,3 @@
+﻿xsd.exe Student.xsd
+
+xsd.exe Student.xsd /classes /language:CS /namespace:XmlSample

@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IXmlSerializerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IXsdValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringWriterWithEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ByteConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValidationResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlSerializerHelper.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 
 using FluentAssertions;
 
+using XmlSample;
 using XmlSample.TestData;
 
 using Xunit;
@@ -192,6 +193,35 @@ namespace System.Xml.Serialization.Tests
             // Assert
             deserializedObject.Should().NotBeNull();
             deserializedObject.StringProperty.Should().Contain("Â");
+        }
+
+        [Fact]
+        public void ShouldSerializeToXmlDocument()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+            var students = new Students
+            {
+                Student = new[]
+                {
+                    new StudentsStudent
+                        {
+                            RollNo = 1,
+                            Name = "Thomas",
+                            Address = "6330 Cham"
+                        }
+                }
+            };
+
+            // Act
+            var serializedStudents = xmlSerializerHelper.SerializeToXmlDocument(students);
+            var deserializedStudents = xmlSerializerHelper.DeserializeFromXml<Students>(serializedStudents);
+
+            // Assert
+            serializedStudents.Should().NotBeNullOrEmpty();
+            deserializedStudents.Should().NotBeNull();
+            deserializedStudents.Student.Should().HaveCount(students.Student.Length);
+            students.ShouldBeEquivalentTo(deserializedStudents, config => config.IncludingAllRuntimeProperties());
         }
     }
 }

@@ -12,6 +12,18 @@ namespace System.Xml.Serialization
         /// </summary>
         Encoding Encoding { get; set; }
 
+#if NETFX
+        /// <summary>
+        /// Serializes XML-serializable objects to XML documents.
+        /// </summary>
+        string SerializeToXmlDocument(object value, Encoding encoding = null);
+#endif
+
+        /// <summary>
+        /// Serializes XML-serializable objects to XML documents.
+        /// </summary>
+        void SerializeToXml(XmlWriter xmlWriter, object value);
+
         /// <summary>
         /// Serializes objects into XML strings.
         /// </summary>

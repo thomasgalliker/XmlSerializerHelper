@@ -30,6 +30,52 @@ namespace System.Xml.Serialization
         /// <inheritdoc />
         public Encoding Encoding { get; set; }
 
+#if NETFX
+        /// <inheritdoc />
+        public string SerializeToXmlDocument(object value, Encoding encoding = null)
+        {
+            var doc = new XmlDocument();
+            var nav = doc.CreateNavigator();
+            using (var xmlWriter = nav.AppendChild())
+            {
+                this.SerializeToXml(xmlWriter, value);
+            }
+
+            encoding = encoding ?? this.Encoding;
+
+            using (var stringWriter = new StringWriterWithEncoding(encoding))
+            {
+                var xmlWriterSettings = new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = "\t",
+                    Encoding = encoding
+                };
+
+                using (var xmlTextWriter = XmlWriter.Create(stringWriter, xmlWriterSettings))
+                {
+                    doc.WriteTo(xmlTextWriter);
+                    xmlTextWriter.Flush();
+                    return stringWriter.GetStringBuilder().ToString();
+                }
+            }
+
+            //return doc.OuterXml;
+        }
+#endif
+
+        /// <inheritdoc />
+        public void SerializeToXml(XmlWriter xmlWriter, object value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            var serializer = new XmlSerializer(value.GetType());
+            serializer.Serialize(xmlWriter, value);
+        }
+
         /// <inheritdoc />
         public string SerializeToXml(object value, bool preserveTypeInformation = false, Encoding encoding = null)
         {
@@ -64,7 +110,7 @@ namespace System.Xml.Serialization
                 {
                     serializer.Serialize(streamWriter, objectToSerialize);
                     return ByteConverter.GetStringFromByteArray(encoding, ((MemoryStream)streamWriter.BaseStream).ToArray());
-                } 
+                }
             }
         }
 
@@ -95,7 +141,7 @@ namespace System.Xml.Serialization
                     return deserialized;
                 }
             }
-            
+
             bool isTargetTypeAnInterface = targetType.GetTypeInfo().IsInterface;
             Type[] extraTypes = { };
             if (!isTargetTypeAnInterface)
