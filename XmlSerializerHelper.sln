@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{B5AEA046-0E87-4A7B-8F11-80B6BDDA1F2A}"
 EndProject
@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{533683F1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerHelper.NuGet", "XmlSerializerHelper.NuGet\XmlSerializerHelper.NuGet.csproj", "{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}"
 	ProjectSection(ProjectDependencies) = postProject
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB} = {D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}
 		{8146AB24-C2E9-4AAA-9BD0-E9E4E402C612} = {8146AB24-C2E9-4AAA-9BD0-E9E4E402C612}
 		{00C0CF40-4DD0-480A-B87F-7F05F38AEFF8} = {00C0CF40-4DD0-480A-B87F-7F05F38AEFF8}
 		{AAEE2D78-4E0A-4C3D-B018-074399CDD522} = {AAEE2D78-4E0A-4C3D-B018-074399CDD522}
@@ -32,8 +31,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerHelper.Android", "XmlSerializerHelper.Android\XmlSerializerHelper.Android.csproj", "{064D66CD-BFD2-4437-8001-D5B8C1CCD2C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerHelper.iOSUnified", "XmlSerializerHelper.iOSUnified\XmlSerializerHelper.iOSUnified.csproj", "{AAEE2D78-4E0A-4C3D-B018-074399CDD522}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerHelper.iOS", "XmlSerializerHelper.iOS\XmlSerializerHelper.iOS.csproj", "{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerHelper.UWP", "XmlSerializerHelper.UWP\XmlSerializerHelper.UWP.csproj", "{21F31494-9BB6-4183-B455-1C9D43280B68}"
 EndProject
@@ -63,20 +60,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSample", "Samples\XmlSam
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{d7f3aa16-8ef1-4924-9e0a-dad4ab46b2eb}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{21f31494-9bb6-4183-b455-1c9d43280b68}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{21f31494-9bb6-4183-b455-1c9d43280b68}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{7172fd80-a4bd-4ece-9f9c-61675482ebb9}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{094695dc-7953-452a-b6d9-cdb06ef4c31c}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{094695dc-7953-452a-b6d9-cdb06ef4c31c}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{aaee2d78-4e0a-4c3d-b018-074399cdd522}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{452bfd7f-bb32-4e7b-9385-16793f5de9bc}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{452bfd7f-bb32-4e7b-9385-16793f5de9bc}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{c8b2f494-2339-4a74-bf7e-e126ea163f12}*SharedItemsImports = 4
 		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{00c0cf40-4dd0-480a-b87f-7f05f38aeff8}*SharedItemsImports = 4
-		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{3f0e7add-f347-4807-b1b0-807d92abd416}*SharedItemsImports = 13
 		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{064d66cd-bfd2-4437-8001-d5b8c1ccd2c0}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{094695dc-7953-452a-b6d9-cdb06ef4c31c}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{094695dc-7953-452a-b6d9-cdb06ef4c31c}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{21f31494-9bb6-4183-b455-1c9d43280b68}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{21f31494-9bb6-4183-b455-1c9d43280b68}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{3f0e7add-f347-4807-b1b0-807d92abd416}*SharedItemsImports = 13
+		XmlSerializerHelper.Shared.WinRT\XmlSerializerHelper.Shared.WinRT.projitems*{452bfd7f-bb32-4e7b-9385-16793f5de9bc}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{452bfd7f-bb32-4e7b-9385-16793f5de9bc}*SharedItemsImports = 4
 		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{521197ec-ca9c-4c98-b480-eb2f9b6c9c67}*SharedItemsImports = 13
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{7172fd80-a4bd-4ece-9f9c-61675482ebb9}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{aaee2d78-4e0a-4c3d-b018-074399cdd522}*SharedItemsImports = 4
+		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{c8b2f494-2339-4a74-bf7e-e126ea163f12}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
@@ -102,6 +98,7 @@ Global
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.AppStore|x86.ActiveCfg = Release|Any CPU
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.AppStore|x86.Build.0 = Release|Any CPU
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.Debug|ARM.Build.0 = Debug|Any CPU
 		{2CF5E868-1098-4C6D-9001-27D8DC0D87BE}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -236,30 +233,6 @@ Global
 		{AAEE2D78-4E0A-4C3D-B018-074399CDD522}.Release|x64.Build.0 = Release|Any CPU
 		{AAEE2D78-4E0A-4C3D-B018-074399CDD522}.Release|x86.ActiveCfg = Release|Any CPU
 		{AAEE2D78-4E0A-4C3D-B018-074399CDD522}.Release|x86.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|Any CPU.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|ARM.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|ARM.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|x64.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|x64.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|x86.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.AppStore|x86.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|ARM.Build.0 = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|x64.Build.0 = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Debug|x86.Build.0 = Debug|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|ARM.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|ARM.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|x64.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|x64.Build.0 = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|x86.ActiveCfg = Release|Any CPU
-		{D7F3AA16-8EF1-4924-9E0A-DAD4AB46B2EB}.Release|x86.Build.0 = Release|Any CPU
 		{21F31494-9BB6-4183-B455-1C9D43280B68}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
 		{21F31494-9BB6-4183-B455-1C9D43280B68}.AppStore|Any CPU.Build.0 = Release|Any CPU
 		{21F31494-9BB6-4183-B455-1C9D43280B68}.AppStore|ARM.ActiveCfg = Release|ARM
