@@ -77,16 +77,21 @@ namespace System.Xml.Serialization
         }
 
         /// <inheritdoc />
-        public string SerializeToXml(object value, bool preserveTypeInformation = false, Encoding encoding = null)
+        public string SerializeToXml<T>(T value, bool preserveTypeInformation = false, Encoding encoding = null)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
+            return this.SerializeToXml(typeof(T), value, preserveTypeInformation, encoding);
+        }
 
-            var sourceType = value.GetType();
 
+        /// <inheritdoc />
+        public string SerializeToXml(Type sourceType, object value, bool preserveTypeInformation = false, Encoding encoding = null)
+        {
             encoding = encoding ?? this.Encoding;
+
+            if (sourceType.GetTypeInfo().IsInterface && value != null)
+            {
+                sourceType = value.GetType();
+            }
 
             object objectToSerialize;
             if (preserveTypeInformation)
@@ -102,7 +107,9 @@ namespace System.Xml.Serialization
                 objectToSerialize = value;
             }
 
-            var serializer = new XmlSerializer(objectToSerialize.GetType(), new[] { sourceType });
+            var mainType = objectToSerialize?.GetType() ?? sourceType;
+            var extraTypes = new[] { sourceType };
+            var serializer = new XmlSerializer(mainType, extraTypes);
 
             using (var memoryStream = new MemoryStream())
             {

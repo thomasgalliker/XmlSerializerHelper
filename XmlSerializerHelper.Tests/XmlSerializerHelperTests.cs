@@ -22,10 +22,12 @@ namespace System.Xml.Serialization.Tests
 
             // Act
 
-            Action action = () => xmlSerializerHelper.SerializeToXml(null);
+            var serializedObject = xmlSerializerHelper.SerializeToXml<object>(null);
+            var deserializedObject = xmlSerializerHelper.DeserializeFromXml<object>(serializedObject);
 
             // Assert
-            action.ShouldThrow<ArgumentNullException>();
+            serializedObject.Should().NotBeNullOrEmpty();
+            deserializedObject.Should().BeNull();
         }
 
         [Fact]
@@ -145,11 +147,26 @@ namespace System.Xml.Serialization.Tests
         }
 
         [Fact]
+        public void ShouldSerializeNullableValue()
+        {
+            // Arrange
+            IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
+
+            // Act
+            var serializedString = xmlSerializerHelper.SerializeToXml<int?>(null, preserveTypeInformation: true);
+            var deserialized = xmlSerializerHelper.DeserializeFromXml<int?>(serializedString);
+
+            // Assert
+            serializedString.Should().NotBeNullOrEmpty();
+            deserialized.Should().Be(null);
+        }
+
+        [Fact]
         public void ShouldDeserializeListFromXmlFile()
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            var restaurantsXml = ResourceLoader.Current.GetEmbeddedResourceString(this.GetType().Assembly, ".SerializedData.xml");
+            var restaurantsXml = ResourceLoader.Current.GetEmbeddedResourceString(typeof(Restaurant).Assembly, ".SerializedData.xml");
             var stopwatch = new Stopwatch();
 
             // Act
