@@ -27,4 +27,4 @@ using Android.App;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("3.0.2")]
 [assembly: AssemblyVersion("3.0.2")]
-[assembly: AssemblyFileVersion("3.0.2-pre1")]
+[assembly: AssemblyFileVersion("3.0.2-pre2")]
