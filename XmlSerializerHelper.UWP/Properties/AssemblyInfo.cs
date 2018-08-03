@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XmlSerializerHelper.UWP")]
-[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -25,5 +25,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("3.0.2")]
 [assembly: AssemblyVersion("3.0.2")]
-[assembly: AssemblyFileVersion("3.0.2-pre2")]
+[assembly: AssemblyFileVersion("3.0.2")]
 [assembly: ComVisible(false)]

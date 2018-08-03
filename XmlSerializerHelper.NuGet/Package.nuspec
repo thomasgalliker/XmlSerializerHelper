@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>XmlSerializerHelper</id>
-    <version>3.0.2-pre2</version>
+    <version>3.0.2</version>
     <title>XmlSerializerHelper</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,8 +16,9 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
-3.0.2-pre
+3.0.2
 - Added serialization support for Nullable types
+- Removed Windows Phone support
 
 3.0.1
 - New feature: SerializeToXmlDocument (.Net Platform only)
@@ -62,26 +63,10 @@
     <file src="..\XmlSerializerHelper.iOSUnified\bin\iPhone\Release\XmlSerializerHelper.pdb" target="lib\xamarin.ios10\XmlSerializerHelper.pdb" />
     <file src="..\XmlSerializerHelper.iOSUnified\bin\iPhone\Release\XmlSerializerHelper.xml" target="lib\xamarin.ios10\XmlSerializerHelper.xml" />
 
-    <!--Windows Phone 8-->
-    <file src="..\XmlSerializerHelper.WindowsPhone8\Bin\Release\XmlSerializerHelper.dll" target="lib\wp8\XmlSerializerHelper.dll" />
-    <file src="..\XmlSerializerHelper.WindowsPhone8\Bin\Release\XmlSerializerHelper.pdb" target="lib\wp8\XmlSerializerHelper.pdb" />
-    <file src="..\XmlSerializerHelper.WindowsPhone8\Bin\Release\XmlSerializerHelper.xml" target="lib\wp8\XmlSerializerHelper.xml" />
-
-    <!--Windows Phone 8.1-->
-    <file src="..\XmlSerializerHelper.WindowsPhone81\Bin\Release\XmlSerializerHelper.dll" target="lib\wpa81\XmlSerializerHelper.dll" />
-    <file src="..\XmlSerializerHelper.WindowsPhone81\Bin\Release\XmlSerializerHelper.pdb" target="lib\wpa81\XmlSerializerHelper.pdb" />
-    <file src="..\XmlSerializerHelper.WindowsPhone81\Bin\Release\XmlSerializerHelper.xml" target="lib\wpa81\XmlSerializerHelper.xml" />
-
-    <!--Windows Store-->
-    <file src="..\XmlSerializerHelper.WindowsStore\Bin\Release\XmlSerializerHelper.dll" target="lib\win81\XmlSerializerHelper.dll" />
-    <file src="..\XmlSerializerHelper.WindowsStore\Bin\Release\XmlSerializerHelper.pdb" target="lib\win81\XmlSerializerHelper.pdb" />
-    <file src="..\XmlSerializerHelper.WindowsStore\Bin\Release\XmlSerializerHelper.xml" target="lib\win81\XmlSerializerHelper.xml" />
-
     <!--Universal Windows Platform-->
     <file src="..\XmlSerializerHelper.UWP\bin\Release\XmlSerializerHelper.dll" target="lib\uap10.0\XmlSerializerHelper.dll" />
     <file src="..\XmlSerializerHelper.UWP\bin\Release\XmlSerializerHelper.pdb" target="lib\uap10.0\XmlSerializerHelper.pdb" />
     <file src="..\XmlSerializerHelper.UWP\bin\Release\XmlSerializerHelper.xml" target="lib\uap10.0\XmlSerializerHelper.xml" />
-
 
     <file src="tools\init.ps1" target="tools\init.ps1" />
     <file src="tools\install.ps1" target="tools\install.ps1" />

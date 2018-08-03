@@ -11,7 +11,7 @@ using Android.App;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XmlSerializerHelper.Android")]
-[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
@@ -27,4 +27,4 @@ using Android.App;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("3.0.2")]
 [assembly: AssemblyVersion("3.0.2")]
-[assembly: AssemblyFileVersion("3.0.2-pre2")]
+[assembly: AssemblyFileVersion("3.0.2")]
