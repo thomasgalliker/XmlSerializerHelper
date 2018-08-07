@@ -43,6 +43,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XmlSerializerHelper.Shared.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSample", "Samples\XmlSample\XmlSample.csproj", "{D4D77A4B-51C4-44A5-B056-1233AD1A99ED}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlSerializerHelper.NetStandard", "XmlSerializerHelper.NetStandard\XmlSerializerHelper.NetStandard.csproj", "{CC977E8F-54D9-4F95-BFBD-B074133679F2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XmlSerializerHelper.Shared\XmlSerializerHelper.Shared.projitems*{00c0cf40-4dd0-480a-b87f-7f05f38aeff8}*SharedItemsImports = 4
@@ -355,6 +357,30 @@ Global
 		{D4D77A4B-51C4-44A5-B056-1233AD1A99ED}.Release|x64.Build.0 = Release|Any CPU
 		{D4D77A4B-51C4-44A5-B056-1233AD1A99ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{D4D77A4B-51C4-44A5-B056-1233AD1A99ED}.Release|x86.Build.0 = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|ARM.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|ARM.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|x64.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|x64.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|x86.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.AppStore|x86.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|ARM.Build.0 = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|x64.Build.0 = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC977E8F-54D9-4F95-BFBD-B074133679F2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
