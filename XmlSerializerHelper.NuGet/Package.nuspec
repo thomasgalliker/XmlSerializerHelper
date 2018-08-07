@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>XmlSerializerHelper</id>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
     <title>XmlSerializerHelper</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,18 +16,21 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
+3.0.3
+- Add support for .Net Standard
+
 3.0.2
-- Added serialization support for Nullable types
-- Removed Windows Phone support
+- Add serialization support for Nullable types
+- Remove Windows Phone support
 
 3.0.1
 - New feature: SerializeToXmlDocument (.Net Platform only)
       
 3.0.0
-- Added XsdValidator to support XSD schema validation. (Currently only supported on .Net 4.5, Xamarin.iOS, Xamarin.Android)
+- Add XsdValidator to support XSD schema validation. (Currently only supported on .Net 4.5, Xamarin.iOS, Xamarin.Android)
       
 2.0.3
-- Added text encoding parameter
+- Add text encoding parameter
 
 2.0.2
 - Refactored to provide non-static implementation of XmlSerializerHelper
@@ -37,9 +40,12 @@
 1.0.1
 - Initial release
     </releaseNotes>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright 2018</copyright>
     <language>en-US</language>
     <dependencies>
+      <group targetFramework="netstandard1.0">
+        <dependency id="System.Xml.XmlSerializer" version="[4.3.0,)" />
+      </group>
     </dependencies>
   </metadata>
   <files>
@@ -52,6 +58,11 @@
     <file src="..\XmlSerializerHelper.Netfx\bin\Release\XmlSerializerHelper.dll" target="lib\net45\XmlSerializerHelper.dll" />
     <file src="..\XmlSerializerHelper.Netfx\bin\Release\XmlSerializerHelper.pdb" target="lib\net45\XmlSerializerHelper.pdb" />
     <file src="..\XmlSerializerHelper.Netfx\bin\Release\XmlSerializerHelper.xml" target="lib\net45\XmlSerializerHelper.xml" />
+    
+    <!--.Net Standard 1.0-->
+    <file src="..\XmlSerializerHelper.NetStandard\bin\Release\netstandard1.0\XmlSerializerHelper.dll" target="lib\netstandard1.0\XmlSerializerHelper.dll" />
+    <file src="..\XmlSerializerHelper.NetStandard\bin\Release\netstandard1.0\XmlSerializerHelper.pdb" target="lib\netstandard1.0\XmlSerializerHelper.pdb" />
+    <file src="..\XmlSerializerHelper.NetStandard\bin\Release\netstandard1.0\XmlSerializerHelper.deps.json" target="lib\netstandard1.0\XmlSerializerHelper.deps.json" />
 
     <!--Xamarin.Android-->
     <file src="..\XmlSerializerHelper.Android\bin\Release\XmlSerializerHelper.dll" target="lib\monoandroid10\XmlSerializerHelper.dll" />
