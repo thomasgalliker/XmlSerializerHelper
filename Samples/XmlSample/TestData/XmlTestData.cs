@@ -2,13 +2,13 @@
 
 namespace XmlSample.TestData
 {
-    internal static class XmlTestData
+    public static class XmlTestData
     {
         /// <summary>
         /// Gets sample XSD definition.
         /// Source: https://msdn.microsoft.com/en-us/library/bb387037.aspx
         /// </summary>
-        internal static string GetXsdMarkup()
+        public static string GetXsdMarkup()
         {
             string xsdMarkup =
                 @"<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -25,7 +25,7 @@ namespace XmlSample.TestData
             return xsdMarkup;
         }
 
-        internal static string GetValidXmlContent()
+        public static string GetValidXmlContent()
         {
             var xDocument = new XDocument(
                 new XElement("Root",
@@ -37,7 +37,7 @@ namespace XmlSample.TestData
             return xDocument.ToString();
         }
 
-        internal static string GetInvalidXmlContent()
+        public static string GetInvalidXmlContent()
         {
             var xDocument = new XDocument(
                 new XElement("Root",

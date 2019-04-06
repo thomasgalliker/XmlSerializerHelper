@@ -79,4 +79,4 @@ string serializedString = XmlSerializerHelper.Current.SerializeToXml(value: new 
 The same applies to XsdValidator.Current. However, it is advised to register the mentioned interfaces along with their respective implementations in an IoC framework, such as Unity, Autofac, Ninject, etc...
 
 ### License
-This project is Copyright &copy; 2016 [Thomas Galliker](https://ch.linkedin.com/in/thomasgalliker). Free for non-commercial use. For commercial use please contact the author.
+This project is Copyright &copy; 2019 [Thomas Galliker](https://ch.linkedin.com/in/thomasgalliker). Free for non-commercial use. For commercial use please contact the author.

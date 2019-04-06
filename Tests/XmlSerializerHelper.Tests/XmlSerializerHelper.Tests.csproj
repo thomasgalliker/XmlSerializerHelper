@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;net452</TargetFrameworks>
+    <AssemblyName>XmlSerializerHelper.Tests</AssemblyName>
+    <PackageId>XmlSerializerHelper.Tests</PackageId>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <RootNamespace>System.Xml.Serialization.Tests</RootNamespace>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <DefineConstants>$(DefineConstants);NET452</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="ResourceLoader" Version="3.1.18322.1" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <!-- Include files in the Resources directory to be used across the test suite -->
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Testdata\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Samples\XmlSample\XmlSample.csproj" />
+    <ProjectReference Include="..\..\XmlSerializerHelper\XmlSerializerHelper.csproj" />
+  </ItemGroup>
+</Project>
