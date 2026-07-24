@@ -1,18 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="TestData\SerializedData.xml" />
-    <None Remove="TestData\Student.xsd" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="TestData\SerializedData.xml" />
-    <EmbeddedResource Include="TestData\Student.xsd" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\XmlSerializerHelper\XmlSerializerHelper.csproj" />

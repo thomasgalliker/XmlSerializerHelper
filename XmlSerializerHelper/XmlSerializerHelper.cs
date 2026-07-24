@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
+using System.IO;
 using System.Text;
 using System.Xml.Serialization.Utils;
 
@@ -30,12 +29,11 @@ namespace System.Xml.Serialization
         /// <inheritdoc />
         public Encoding Encoding { get; set; }
 
-#if !NETSTANDARD1_0
         /// <inheritdoc />
-        public string SerializeToXmlDocument(object value, Encoding encoding = null)
+        public string SerializeToXmlDocument(object value, Encoding? encoding = null)
         {
             var doc = new XmlDocument();
-            var nav = doc.CreateNavigator();
+            var nav = doc.CreateNavigator()!;
             using (var xmlWriter = nav.AppendChild())
             {
                 this.SerializeToXml(xmlWriter, value);
@@ -59,10 +57,7 @@ namespace System.Xml.Serialization
                     return stringWriter.GetStringBuilder().ToString();
                 }
             }
-
-            //return doc.OuterXml;
         }
-#endif
 
         /// <inheritdoc />
         public void SerializeToXml(XmlWriter xmlWriter, object value)
@@ -77,23 +72,23 @@ namespace System.Xml.Serialization
         }
 
         /// <inheritdoc />
-        public string SerializeToXml<T>(T value, bool preserveTypeInformation = false, Encoding encoding = null)
+        public string SerializeToXml<T>(T? value, bool preserveTypeInformation = false, Encoding? encoding = null)
         {
             return this.SerializeToXml(typeof(T), value, preserveTypeInformation, encoding);
         }
 
 
         /// <inheritdoc />
-        public string SerializeToXml(Type sourceType, object value, bool preserveTypeInformation = false, Encoding encoding = null)
+        public string SerializeToXml(Type sourceType, object? value, bool preserveTypeInformation = false, Encoding? encoding = null)
         {
             encoding = encoding ?? this.Encoding;
 
-            if (sourceType.GetTypeInfo().IsInterface && value != null)
+            if (sourceType.IsInterface && value != null)
             {
                 sourceType = value.GetType();
             }
 
-            object objectToSerialize;
+            object? objectToSerialize;
             if (preserveTypeInformation)
             {
                 objectToSerialize = new ValueToTypeMapping
@@ -122,7 +117,7 @@ namespace System.Xml.Serialization
         }
 
         /// <inheritdoc />
-        public object DeserializeFromXml(Type targetType, string xmlString, Encoding encoding = null)
+        public object DeserializeFromXml(Type targetType, string xmlString, Encoding? encoding = null)
         {
             if (targetType == null)
             {
@@ -139,17 +134,15 @@ namespace System.Xml.Serialization
             if (!ValueToTypeMapping.CheckIfStringContainsTypeInformation(xmlString))
             {
                 // If type information was not preserved, the targetType must not be an interface
-                //Guard.ArgumentMustNotBeInterface(targetType);
-
                 var serializer = new XmlSerializer(targetType);
                 using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
                 {
-                    var deserialized = serializer.Deserialize(memoryStream);
+                    var deserialized = serializer.Deserialize(memoryStream)!;
                     return deserialized;
                 }
             }
 
-            bool isTargetTypeAnInterface = targetType.GetTypeInfo().IsInterface;
+            bool isTargetTypeAnInterface = targetType.IsInterface;
             Type[] extraTypes = { };
             if (!isTargetTypeAnInterface)
             {
@@ -157,31 +150,31 @@ namespace System.Xml.Serialization
             }
 
             var serializerBefore = new XmlSerializer(typeof(ValueToTypeMapping), extraTypes);
-            ValueToTypeMapping deserializedObject = null;
+            ValueToTypeMapping deserializedObject;
 
             using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
             {
-                deserializedObject = (ValueToTypeMapping)serializerBefore.Deserialize(memoryStream);
+                deserializedObject = (ValueToTypeMapping)serializerBefore.Deserialize(memoryStream)!;
             }
 
             // If the target type is an interface, we need to deserialize again with more type information
             if (isTargetTypeAnInterface)
             {
-                Type serializedType = Type.GetType(deserializedObject.TypeName);
+                Type serializedType = Type.GetType(deserializedObject.TypeName!)!;
                 var serializerAfter = new XmlSerializer(typeof(ValueToTypeMapping), new[] { serializedType });
                 using (var memoryStream = new MemoryStream(ByteConverter.GetByteArrayFromString(encoding, xmlString)))
                 {
-                    deserializedObject = (ValueToTypeMapping)serializerAfter.Deserialize(memoryStream);
+                    deserializedObject = (ValueToTypeMapping)serializerAfter.Deserialize(memoryStream)!;
                 }
 
-                return Convert.ChangeType(deserializedObject.Value, serializedType);
+                return Convert.ChangeType(deserializedObject.Value, serializedType)!;
             }
 
-            return deserializedObject.Value;
+            return deserializedObject.Value!;
         }
 
         /// <inheritdoc />
-        public T DeserializeFromXml<T>(string xmlString, Encoding encoding = null)
+        public T DeserializeFromXml<T>(string xmlString, Encoding? encoding = null)
         {
             Type targetType = typeof(T);
             return (T)this.DeserializeFromXml(targetType, xmlString, encoding);
@@ -207,9 +200,9 @@ namespace System.Xml.Serialization
                 return xmlString.Contains(Identifier);
             }
 
-            public string TypeName { get; set; }
+            public string? TypeName { get; set; }
 
-            public object Value { get; set; }
+            public object? Value { get; set; }
         }
     }
 }

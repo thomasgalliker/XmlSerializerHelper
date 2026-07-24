@@ -1,11 +1,3 @@
-﻿using System.Linq;
-
-using FluentAssertions;
-
-using XmlSample.TestData;
-
-using Xunit;
-
 namespace System.Xml.Serialization.Tests
 {
     public class XsdValidatorTests

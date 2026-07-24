@@ -1,0 +1,31 @@
+5.0
+- Modernized to netstandard2.0, netstandard2.1 and net8.0 (dropped netstandard1.0 and net45)
+- Migrated CI to azure-pipelines.yml; solution to slnx
+
+4.0
+- Refactor to support .NET Standard 2.0
+
+3.0.3
+- Add support for .Net Standard
+- Last release with PCL support
+
+3.0.2
+- Add serialization support for Nullable types
+- Remove Windows Phone support
+
+3.0.1
+- New feature: SerializeToXmlDocument (.Net Platform only)
+
+3.0.0
+- Add XsdValidator to support XSD schema validation. (Currently only supported on .Net 4.5, Xamarin.iOS, Xamarin.Android)
+
+2.0.3
+- Add text encoding parameter
+
+2.0.2
+- Refactored to provide non-static implementation of XmlSerializerHelper
+- New IXmlSerializerHelper interface as abstraction for XmlSerializerHelper
+- Static access to IXmlSerializerHelper via XmlSerializerHelper.Current
+
+1.0.1
+- Initial release

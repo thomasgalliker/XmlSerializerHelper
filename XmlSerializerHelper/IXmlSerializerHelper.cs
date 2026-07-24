@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace System.Xml.Serialization
 {
@@ -12,12 +12,10 @@ namespace System.Xml.Serialization
         /// </summary>
         Encoding Encoding { get; set; }
 
-#if !NETSTANDARD1_0
         /// <summary>
         /// Serializes XML-serializable objects to XML documents.
         /// </summary>
-        string SerializeToXmlDocument(object value, Encoding encoding = null);
-#endif
+        string SerializeToXmlDocument(object value, Encoding? encoding = null);
 
         /// <summary>
         /// Serializes XML-serializable objects to XML documents.
@@ -34,7 +32,7 @@ namespace System.Xml.Serialization
         /// Default value is <value>false</value>..</param>
         /// <param name="encoding">The string encoding.</param>
         /// <returns>The serialized XML string.</returns>
-        string SerializeToXml<T>(T value, bool preserveTypeInformation = false, Encoding encoding = null);
+        string SerializeToXml<T>(T? value, bool preserveTypeInformation = false, Encoding? encoding = null);
 
         /// <summary>
         /// Serializes objects into XML strings.
@@ -47,7 +45,7 @@ namespace System.Xml.Serialization
         /// Default value is <value>false</value>..</param>
         /// <param name="encoding">The string encoding.</param>
         /// <returns>The serialized XML string.</returns>
-        string SerializeToXml(Type sourceType, object value, bool preserveTypeInformation = false, Encoding encoding = null);
+        string SerializeToXml(Type sourceType, object? value, bool preserveTypeInformation = false, Encoding? encoding = null);
 
         /// <summary>
         /// Deserializes XML strings into objects of given type T.
@@ -56,16 +54,15 @@ namespace System.Xml.Serialization
         /// <param name="xmlString">The serialized XML string.</param>
         /// <param name="encoding">The string encoding.</param>
         /// <returns>The deserialized object of target type.</returns>
-        T DeserializeFromXml<T>(string xmlString, Encoding encoding = null);
+        T DeserializeFromXml<T>(string xmlString, Encoding? encoding = null);
 
         /// <summary>
         /// Deserializes XML strings into objects of given targetType.
         /// </summary>
-        /// <typeparam name="T">Target type T.</typeparam>
         /// <param name="targetType">Target type.</param>
         /// <param name="xmlString">The serialized XML string.</param>
         /// <param name="encoding">The string encoding.</param>
         /// <returns>The deserialized object of target type.</returns>
-        object DeserializeFromXml(Type targetType, string xmlString, Encoding encoding = null);
+        object DeserializeFromXml(Type targetType, string xmlString, Encoding? encoding = null);
     }
 }
