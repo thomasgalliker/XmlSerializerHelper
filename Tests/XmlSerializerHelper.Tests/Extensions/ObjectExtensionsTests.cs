@@ -1,8 +1,4 @@
-﻿using System.Xml.Serialization.Extensions;
-
-using FluentAssertions;
-
-using Xunit;
+using System.Xml.Serialization.Extensions;
 
 namespace System.Xml.Serialization.Tests.Extensions
 {
@@ -13,42 +9,41 @@ namespace System.Xml.Serialization.Tests.Extensions
         {
             // Arrange
             float inputValue = 123.456f;
-            string expectedOuput = @"﻿<?xml version=""1.0"" encoding=""utf-8""?>"+Environment.NewLine+"<float>123.456</float>";
+            string expectedOutput = "﻿" + @"<?xml version=""1.0"" encoding=""utf-8""?>" + "\n<float>123.456</float>";
 
             // Act
             var serializedString = inputValue.SerializeToXml();
 
             // Assert
-            serializedString.Should().Be(expectedOuput);
+            serializedString.Replace("\r\n", "\n").Should().Be(expectedOutput);
         }
 
         [Fact]
         public void ShouldTestDeserializeFromXmlExtensionMethodGeneric()
         {
             // Arrange
-            string serializedString = @"﻿<?xml version=""1.0"" encoding=""utf-8""?><float>123.456</float>";
-            float expectedOuput = 123.456f;
+            string serializedString = "﻿" + @"<?xml version=""1.0"" encoding=""utf-8""?><float>123.456</float>";
+            float expectedOutput = 123.456f;
 
             // Act
             var deserializedObject = serializedString.DeserializeFromXml<float>();
 
             // Assert
-            deserializedObject.Should().Be(expectedOuput);
+            deserializedObject.Should().Be(expectedOutput);
         }
-
 
         [Fact]
         public void ShouldTestDeserializeFromXmlExtensionMethodNonGeneric()
         {
             // Arrange
-            string serializedString = @"﻿<?xml version=""1.0"" encoding=""utf-8""?><float>123.456</float>";
-            float expectedOuput = 123.456f;
+            string serializedString = "﻿" + @"<?xml version=""1.0"" encoding=""utf-8""?><float>123.456</float>";
+            float expectedOutput = 123.456f;
 
             // Act
             var deserializedObject = serializedString.DeserializeFromXml(typeof(float));
 
             // Assert
-            deserializedObject.Should().Be(expectedOuput);
+            deserializedObject.Should().Be(expectedOutput);
         }
     }
 }

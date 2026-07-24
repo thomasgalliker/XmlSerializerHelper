@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Samples/">
+    <Project Path="Samples/XmlConsoleApp/XmlConsoleApp.csproj" />
+    <Project Path="Samples/XmlSample/XmlSample.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="azure-pipelines.yml" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+    <File Path="ReleaseNotes.txt" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/XmlSerializerHelper.Tests/XmlSerializerHelper.Tests.csproj" />
+  </Folder>
+  <Project Path="XmlSerializerHelper/XmlSerializerHelper.csproj" />
+</Solution>

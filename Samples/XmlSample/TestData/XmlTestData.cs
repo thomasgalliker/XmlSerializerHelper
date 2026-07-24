@@ -5,12 +5,12 @@ namespace XmlSample.TestData
     public static class XmlTestData
     {
         /// <summary>
-        /// Gets sample XSD definition.
-        /// Source: https://msdn.microsoft.com/en-us/library/bb387037.aspx
+        ///     Gets sample XSD definition.
+        ///     Source: https://msdn.microsoft.com/en-us/library/bb387037.aspx
         /// </summary>
         public static string GetXsdMarkup()
         {
-            string xsdMarkup =
+            var xsdMarkup =
                 @"<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
                    <xsd:element name='Root'>
                     <xsd:complexType>
