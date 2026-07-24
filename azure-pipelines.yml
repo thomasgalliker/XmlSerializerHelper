@@ -21,10 +21,10 @@ variables:
   majorVersion: 5
   minorVersion: 0
   patchVersion: $[counter(format('{0}.{1}', variables.majorVersion, variables.minorVersion), 0)]
-  ${{ if in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master') }}:
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
     # Versioning: 1.0.0
     semVersion: $[format('{0}.{1}.{2}', variables.majorVersion, variables.minorVersion, variables.patchVersion)]
-  ${{ if and(notIn(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master'), not(startsWith(variables['Build.SourceBranch'], 'refs/pull/'))) }}:
+  ${{ if and(ne(variables['Build.SourceBranch'], 'refs/heads/main'), not(startsWith(variables['Build.SourceBranch'], 'refs/pull/'))) }}:
     # Versioning: 1.0.0-pre
     semVersion: $[format('{0}.{1}.{2}-pre', variables.majorVersion, variables.minorVersion, variables.patchVersion)]
   ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
@@ -34,7 +34,7 @@ variables:
 
 steps:
 - task: Bash@3
-  displayName: 'Print all variables'
+  displayName: 'Print All Variables'
   inputs:
     targetType: 'inline'
     script: 'env | sort'
@@ -73,20 +73,21 @@ steps:
     versionSpec: 6.x
 
 - task: DotNetCoreCLI@2
-  displayName: 'NuGet restore'
+  displayName: 'NuGet Restore'
   inputs:
     command: restore
     projects: |
-      XmlSerializerHelper/**/*.csproj
-      **/*.Tests.csproj
+      XmlSerializerHelper*/**/*.csproj
+      Tests/**/*.Tests.csproj
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build solution'
+  displayName: 'Build Projects'
   inputs:
     projects: |
-      XmlSerializerHelper/**/*.csproj
-      **/*.Tests.csproj
-    arguments: '--no-restore --configuration $(buildConfiguration)'
+      XmlSerializerHelper*/**/*.csproj
+      Tests/**/*.Tests.csproj
+    arguments: >
+      --no-restore --configuration $(buildConfiguration)
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Unit Tests'
@@ -102,17 +103,9 @@ steps:
       /p:CoverletOutput=UnitTests.coverage.cobertura.xml
       /p:MergeWith=$(Build.SourcesDirectory)/Tests/CoverletOutput/coverage.json
       /p:CoverletOutputFormat=cobertura
-      
-- task: reportgenerator@5
-  displayName: 'Create Code Coverage Report'
-  inputs:
-    reports: '$(Build.SourcesDirectory)/Tests/**/*.coverage.cobertura*.xml'
-    targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
-    reporttypes: 'Cobertura'
-    assemblyfilters: '-xunit*'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Pack XmlSerializerHelper'
+  displayName: 'Create NuGet Package'
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   inputs:
     command: pack
@@ -122,7 +115,7 @@ steps:
     nobuild: true
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy Files To: $(Build.ArtifactStagingDirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: |
@@ -132,11 +125,11 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishCodeCoverageResults@2
-  displayName: 'Publish code coverage'
+  displayName: 'Publish Code Coverage Results'
   inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
-    reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
+    summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/**/coverage.cobertura.xml'
+    pathToSources: '$(Build.SourcesDirectory)'
+    failIfCoverageEmpty: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
