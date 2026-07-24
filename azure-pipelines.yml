@@ -93,7 +93,7 @@ steps:
   displayName: 'Run Unit Tests'
   inputs:
     command: test
-    projects: '$(solution)'
+    projects: Tests/**/*.Tests.csproj
     arguments: >
       --no-restore --no-build 
       --configuration $(buildConfiguration) 
