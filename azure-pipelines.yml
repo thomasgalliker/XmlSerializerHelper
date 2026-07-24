@@ -93,16 +93,15 @@ steps:
   displayName: 'Run Unit Tests'
   inputs:
     command: test
-    projects: 'Tests/**/*.Tests.csproj'
+    projects: '$(solution)'
     arguments: >
-      --no-restore
-      --no-build
-      --configuration $(buildConfiguration)
-      /p:CollectCoverage=true
+      --no-restore --no-build 
+      --configuration $(buildConfiguration) 
       /p:Exclude="[Microsoft*]*%2C[Mono*]*%2C[xunit*]*%2C[*.Testdata]*"
-      /p:CoverletOutput=UnitTests.coverage.cobertura.xml
-      /p:MergeWith=$(Build.SourcesDirectory)/Tests/CoverletOutput/coverage.json
-      /p:CoverletOutputFormat=cobertura
+      /p:CollectCoverage=true
+      /p:CoverletOutputFormat=json%2Ccobertura%2Copencover
+      /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/CodeCoverage/
+      /p:MergeWith=$(Build.SourcesDirectory)/TestResults/CodeCoverage/coverage.json
 
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet Package'
