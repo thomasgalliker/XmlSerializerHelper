@@ -3,7 +3,7 @@
     public interface IXsdValidator
     {
         /// <summary>
-        /// Validates the given <param name="xmlContent">xmlContent</param> against the given XSD schema <param name="xsdContent">xsdContent</param>.
+        /// Validates the given <paramref name="xmlContent"/> against the given XSD schema <paramref name="xsdContent"/>.
         /// </summary>
         /// <param name="xmlContent">The XML content as string.</param>
         /// <param name="xsdContent">The XSD schema as string.</param>

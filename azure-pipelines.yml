@@ -1,0 +1,134 @@
+####################################################################
+# Azure DevOps Build Configuration
+#
+# (c)2026 superdev GmbH
+####################################################################
+
+name: $[format('{0}', variables['buildName'])]
+
+pool:
+  vmImage: 'windows-latest'
+
+trigger:
+  branches:
+    include:
+    - main
+    - develop
+
+variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  majorVersion: 5
+  minorVersion: 0
+  patchVersion: $[counter(format('{0}.{1}', variables.majorVersion, variables.minorVersion), 0)]
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+    # Versioning: 1.0.0
+    semVersion: $[format('{0}.{1}.{2}', variables.majorVersion, variables.minorVersion, variables.patchVersion)]
+  ${{ if and(ne(variables['Build.SourceBranch'], 'refs/heads/main'), not(startsWith(variables['Build.SourceBranch'], 'refs/pull/'))) }}:
+    # Versioning: 1.0.0-pre
+    semVersion: $[format('{0}.{1}.{2}-pre', variables.majorVersion, variables.minorVersion, variables.patchVersion)]
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
+    # Versioning: 1.0.0-pr.000000001
+    semVersion: $[format('{0}.{1}.{2}-pr.{3}', variables.majorVersion, variables.minorVersion, variables.patchVersion, variables['System.PullRequest.PullRequestId'])]
+  buildName: $[format('{0}', variables.semVersion)]
+
+steps:
+- task: Bash@3
+  displayName: 'Print All Variables'
+  inputs:
+    targetType: 'inline'
+    script: 'env | sort'
+
+- task: Assembly-Info-NetCore@3
+  displayName: 'Update Assembly Info'
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: |
+      **/*.csproj
+    InsertAttributes: true
+    FileEncoding: 'auto'
+    WriteBOM: false
+    Product: 'XmlSerializerHelper'
+    Description: ''
+    Company: 'superdev GmbH'
+    Copyright: '(c) $(date:YYYY) superdev GmbH'
+    VersionNumber: '$(Build.BuildNumber)'
+    FileVersionNumber: '$(Build.BuildNumber)'
+    InformationalVersion: '$(Build.BuildNumber)'
+    PackageVersion: '$(Build.BuildNumber)'
+    LogLevel: 'verbose'
+    FailOnWarning: false
+    DisableTelemetry: true
+
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK from global.json'
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
+    workingDirectory: '$(Build.SourcesDirectory)'
+
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 6.x'
+  inputs:
+    versionSpec: 6.x
+
+- task: DotNetCoreCLI@2
+  displayName: 'NuGet Restore'
+  inputs:
+    command: restore
+    projects: |
+      XmlSerializerHelper*/**/*.csproj
+      Tests/**/*.Tests.csproj
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build Projects'
+  inputs:
+    projects: |
+      XmlSerializerHelper*/**/*.csproj
+      Tests/**/*.Tests.csproj
+    arguments: >
+      --no-restore --configuration $(buildConfiguration)
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run Unit Tests'
+  inputs:
+    command: test
+    projects: Tests/**/*.Tests.csproj
+    arguments: >
+      --no-restore --no-build 
+      --configuration $(buildConfiguration) 
+      /p:Exclude="[Microsoft*]*%2C[Mono*]*%2C[xunit*]*%2C[*.Testdata]*"
+      /p:CollectCoverage=true
+      /p:CoverletOutputFormat=json%2Ccobertura%2Copencover
+      /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/CodeCoverage/
+      /p:MergeWith=$(Build.SourcesDirectory)/TestResults/CodeCoverage/coverage.json
+
+- task: DotNetCoreCLI@2
+  displayName: 'Create NuGet Package'
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    command: pack
+    packagesToPack: XmlSerializerHelper/XmlSerializerHelper.csproj
+    versioningScheme: byEnvVar
+    versionEnvVar: semVersion
+    nobuild: true
+
+- task: CopyFiles@2
+  displayName: 'Copy Files To: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: |
+      **\bin\*.nupkg
+      **\bin\*.snupkg
+      **\ReleaseNotes.txt
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishCodeCoverageResults@2
+  displayName: 'Publish Code Coverage Results'
+  inputs:
+    summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/**/coverage.cobertura.xml'
+    pathToSources: '$(Build.SourcesDirectory)'
+    failIfCoverageEmpty: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'

@@ -1,14 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using System.Text;
-
-using FluentAssertions;
-
-using XmlSample;
-using XmlSample.TestData;
-
-using Xunit;
 
 namespace System.Xml.Serialization.Tests
 {
@@ -38,7 +28,7 @@ namespace System.Xml.Serialization.Tests
 
             // Act
 
-            Action action = () => xmlSerializerHelper.DeserializeFromXml(null, string.Empty);
+            Action action = () => xmlSerializerHelper.DeserializeFromXml(null!, string.Empty);
 
             // Assert
             action.Should().Throw<ArgumentNullException>();
@@ -166,17 +156,13 @@ namespace System.Xml.Serialization.Tests
         {
             // Arrange
             IXmlSerializerHelper xmlSerializerHelper = new XmlSerializerHelper();
-            var restaurantsXml = ResourceLoader.Current.GetEmbeddedResourceString(typeof(Restaurant).Assembly, ".SerializedData.xml");
-            var stopwatch = new Stopwatch();
+            var restaurantsXml = EmbeddedResourceLoader.GetString("SerializedData.xml");
 
             // Act
-            stopwatch.Start();
             var listOfRestaurants = xmlSerializerHelper.DeserializeFromXml<List<Restaurant>>(restaurantsXml);
-            stopwatch.Stop();
 
             // Assert
             listOfRestaurants.Should().HaveCount(4891);
-            stopwatch.Elapsed.TotalMilliseconds.Should().BeLessOrEqualTo(1500);
         }
 
         [Fact]

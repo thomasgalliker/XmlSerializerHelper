@@ -2,7 +2,7 @@ namespace System.Xml.Serialization.Exceptions
 {
     public class XsdValidationException : Exception
     {
-        public XsdValidationException(string message, string sourceUri, int lineNumber, int linePosition) : base(message)
+        public XsdValidationException(string message, string? sourceUri, int lineNumber, int linePosition) : base(message)
         {
             this.SourceUri = sourceUri;
             this.LineNumber = lineNumber;
@@ -13,6 +13,6 @@ namespace System.Xml.Serialization.Exceptions
 
         public int LinePosition { get; private set; }
 
-        public string SourceUri { get; private set; }
+        public string? SourceUri { get; private set; }
     }
 }

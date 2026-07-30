@@ -1,4 +1,3 @@
-﻿#if !NETSTANDARD1_0
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -61,11 +60,11 @@ namespace System.Xml.Serialization
             return new ValidationResult(validationExceptions);
         }
 
-        private static XmlReaderSettings GetXmlReaderSettings(string xsdContent, Action<object, ValidationEventArgs> validationFunction)
+        private static XmlReaderSettings GetXmlReaderSettings(string xsdContent, Action<object?, ValidationEventArgs> validationFunction)
         {
             var schema = XmlSchema.Read(
                 reader: new StringReader(xsdContent),
-                validationEventHandler: (obj, eventArgs) => validationFunction(obj, eventArgs));
+                validationEventHandler: (obj, eventArgs) => validationFunction(obj, eventArgs))!;
 
             var readerSettings = new XmlReaderSettings { ValidationType = ValidationType.Schema };
             readerSettings.Schemas.Add(schema);
@@ -74,5 +73,3 @@ namespace System.Xml.Serialization
         }
     }
 }
-
-#endif
